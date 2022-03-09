@@ -31,11 +31,16 @@ def ec2action(action):
         for i in ec2_Instances:
              ec2list.append(i["Instances"][0]["InstanceId"])
         return jsonify(instanceId=ec2list)
-        
+
     elif (action=="start"):
-        return "2"
+        insID=aws_data["InstanceId"]
+        aws_response=aws_client.start_instances(InstanceIds=[insID])
+        status="status"
+        return jsonify(status=aws_response["StartingInstances"][0]["CurrentState"]["Name"])
+
     elif (action=="stop"):
         return "3"
+
     else:
         return "Undefined action."
 
