@@ -8,7 +8,7 @@ import logging,cfg,boto3
 app = Flask(__name__)
 logging.basicConfig(filename="./logs/logs.log", filemode="w", format="%(name)s -> %(levelname)s: %(message)s")
 
-@app.route("/")
+@app.route("/",methods=["GET"])
 def index():
     return "Welcome to EC2 Manager!"
 
@@ -39,8 +39,10 @@ def ec2action(action):
         return jsonify(status=aws_response["StartingInstances"][0]["CurrentState"]["Name"])
 
     elif (action=="stop"):
-        return "3"
-
+        insID=aws_data["InstanceId"]
+        aws_response=aws_client.stop_instances(InstanceIds=[insID])
+        status="status"
+        return jsonify(status=aws_response["StoppingInstances"][0]["CurrentState"]["Name"])
     else:
         return "Undefined action."
 
