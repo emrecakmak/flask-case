@@ -1,6 +1,7 @@
 from crypt import methods
+from re import I
 from aiohttp import request
-from flask import Flask, request
+from flask import Flask, request,jsonify
 import logging,cfg,boto3
 
 
@@ -20,18 +21,21 @@ def ec2action(action):
         aws_access_key_id=aws_data["aws_access_key_id"],
         aws_secret_access_key=aws_data["aws_secret_access_key"] 
     ) 
-    aws_response=aws_client.describe_instances()
-    ec2_Instances=aws_response["Reservations"][0]["Instances"]
-    logging.critical("AWS Client Created")
+    logging.info("AWS Client Created")
 
     if (action=="list"):
-        ic_id=ec2_Instances[0]["InstanceId"]
-        logging.critical("InstanceId returned")
-        return ic_id
+        aws_response=aws_client.describe_instances()
+        ec2_Instances=aws_response["Reservations"]
+        instanceId="InstanceID"
+        ec2list=[]
+        for i in ec2_Instances:
+             ec2list.append(i["Instances"][0]["InstanceId"])
+        return jsonify(instanceId=ec2list)
+        
     elif (action=="start"):
-        return ""
+        return "2"
     elif (action=="stop"):
-        return ""
+        return "3"
     else:
         return "Undefined action."
 
