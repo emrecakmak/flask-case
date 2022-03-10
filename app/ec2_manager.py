@@ -1,7 +1,7 @@
 from crypt import methods
 from re import I
 from aiohttp import request
-from flask import Flask, request,jsonify
+from flask import Flask, request,jsonify,make_response
 import logging,cfg,boto3
 
 
@@ -26,23 +26,32 @@ def ec2action(action):
     if (action=="list"):
         aws_response=aws_client.describe_instances()
         ec2_Instances=aws_response["Reservations"]
-        instanceId="InstanceID"
+        instanceId="InstanceIDs"
         ec2list=[]
         for i in ec2_Instances:
              ec2list.append(i["Instances"][0]["InstanceId"])
-        return jsonify(instanceId=ec2list)
+        response = make_response(
+            jsonify(instanceId=ec2list),
+             200,)
+        return response             
 
     elif (action=="start"):
         insID=aws_data["InstanceId"]
         aws_response=aws_client.start_instances(InstanceIds=[insID])
         status="status"
-        return jsonify(status=aws_response["StartingInstances"][0]["CurrentState"]["Name"])
+        response = make_response(
+            jsonify(status=aws_response["StartingInstances"][0]["CurrentState"]["Name"]),
+             200,)
+        return response
 
     elif (action=="stop"):
         insID=aws_data["InstanceId"]
         aws_response=aws_client.stop_instances(InstanceIds=[insID])
         status="status"
-        return jsonify(status=aws_response["StoppingInstances"][0]["CurrentState"]["Name"])
+        response = make_response(
+            jsonify(status=aws_response["StoppingInstances"][0]["CurrentState"]["Name"]),
+             200,)
+        return response        
     else:
         return "Undefined action."
 
