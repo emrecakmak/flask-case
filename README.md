@@ -10,7 +10,7 @@ işlevlerini yapan API.
 
 
 
-Kurulum yapmadan istek atmak için: http://ec2-3-66-189-54.eu-central-1.compute.amazonaws.com:3000/
+Kurulum yapmadan istek atmak için: http://ec2-3-120-129-120.eu-central-1.compute.amazonaws.com:3000/
 
 ## Bilgisayarınızda Çalıştırın
 
