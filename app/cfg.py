@@ -2,6 +2,6 @@ from distutils.command.config import config
 
 
 config={
-    "hostname":"localhost",
-    "port":8080
+    "hostname":"0.0.0.0",
+    "port":3000
 }
