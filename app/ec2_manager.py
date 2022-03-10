@@ -33,7 +33,7 @@ def ec2action(action):
             response = make_response(
                 jsonify(instanceId=ec2list),
                 200,)
-            logging.info("List Returned.")     
+            logging.critical("List Returned.")     
             return response             
 
         elif (action=="start"):
@@ -43,7 +43,7 @@ def ec2action(action):
             response = make_response(
                 jsonify(status=aws_response["StartingInstances"][0]["CurrentState"]["Name"]),
                 200,)
-            logging.info("Instances Started.")     
+            logging.critical("Instances Started.")     
             return response
 
         elif (action=="stop"):
@@ -53,12 +53,12 @@ def ec2action(action):
             response = make_response(
                 jsonify(status=aws_response["StoppingInstances"][0]["CurrentState"]["Name"]),
                 200,)
-            logging.info("Instances Stopped.")
+            logging.critical("Instances Stopped.")
             return response        
         
         else:
+            logging.critical("Undefined action detected")
             return make_response("Undefined action.",400)
-    
     except Exception as e:
         return make_response(str(e),412)
 
