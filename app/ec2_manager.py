@@ -6,7 +6,7 @@ import logging,cfg,boto3
 
 
 app = Flask(__name__)
-logging.basicConfig(filename="./logs/logs.log", filemode="w", format="%(name)s -> %(levelname)s: %(message)s")
+logging.basicConfig(filename="./app/app/logs/logs.log", filemode="w", format="%(name)s -> %(levelname)s: %(message)s")
 
 @app.route("/",methods=["GET"])
 def index():
