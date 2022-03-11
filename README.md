@@ -46,7 +46,7 @@ Docker containarı ayağa kaldıralım
 #### AWS konsolunuz içerisinde varolan tüm EC2 Instance ID'lerini getirme
 
 ```http
-  POST /list
+  POST ec2/list
 ```
 
 | Parametre | Tip     | Açıklama                |
@@ -58,7 +58,7 @@ Docker containarı ayağa kaldıralım
 #### AWS konsolunuz içerisinde ID'sini verdiğiniz Instance'ı çalıştırma
 
 ```http
-  POST /start
+  POST ec2/start
 ```
 
 | Parametre | Tip     | Açıklama                |
@@ -71,7 +71,7 @@ Docker containarı ayağa kaldıralım
 #### AWS konsolunuz içerisinde ID'sini verdiğiniz Instance'ı durdurma
 
 ```http
-  POST /stop
+  POST ec2/stop
 ```
 
 | Parametre | Tip     | Açıklama                |
