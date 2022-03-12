@@ -57,7 +57,7 @@ Docker containarı ayağa kaldıralım
 
 #### AWS konsolunuz içerisinde ID'sini verdiğiniz Instance'ı çalıştırma
 
-```http
+```https
   POST ec2/start
 ```
 
@@ -70,7 +70,7 @@ Docker containarı ayağa kaldıralım
   
 #### AWS konsolunuz içerisinde ID'sini verdiğiniz Instance'ı durdurma
 
-```http
+```https
   POST ec2/stop
 ```
 
