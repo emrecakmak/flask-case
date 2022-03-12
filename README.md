@@ -45,7 +45,7 @@ Docker containarı ayağa kaldıralım
 
 #### AWS konsolunuz içerisinde varolan tüm EC2 Instance ID'lerini getirme
 
-```http
+```https
   POST ec2/list
 ```
 
